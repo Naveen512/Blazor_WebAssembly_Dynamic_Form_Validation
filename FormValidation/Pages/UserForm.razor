@@ -1,0 +1,65 @@
+﻿@page "/userform"
+@using Model
+<h3>UserForm</h3>
+
+<EditForm Model="@user" OnValidSubmit="@Submit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    
+    <div class="form-group row">
+        <label for="txtFirstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+            <InputText id="txtFirstName" class="form-control" @bind-Value="@user.FirstName"></InputText>
+            <ValidationMessage For="@(() => user.FirstName)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtLastName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+            <InputText id="txtLastName" class="form-control" @bind-Value="@user.LastName"></InputText>
+            <ValidationMessage For="@(() => user.LastName)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtContactType" class="col-sm-2 col-form-label">Contact Type</label>
+        <div class="col-sm-10">
+            <InputSelect id="txtContactType" class="form-control" @bind-Value="@user.ContactType">
+                <option selected value="-1">-Select-</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+            </InputSelect>
+            <ValidationMessage For="@(() => user.ContactType)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <InputText id="txtEmail" class="form-control" @bind-Value="@user.Email"></InputText>
+            <ValidationMessage For="@(() => user.Email)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtPhone" class="col-sm-2 col-form-label">Phone</label>
+        <div class="col-sm-10">
+            <InputText id="txtPhone" class="form-control" @bind-Value="@user.Phone"></InputText>
+            <ValidationMessage For="@(() => user.Phone)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</EditForm>
+
+@code {
+    UserFormModel user;
+
+    protected override void OnInitialized()
+    {
+        user = new UserFormModel();
+    }
+
+    public void Submit()
+    {
+        // this method calls on valid form
+        // save form data by posting data to your api
+    }
+}
